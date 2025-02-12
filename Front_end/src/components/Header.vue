@@ -1,82 +1,152 @@
 <template>
-    <div>
-      <!-- Barra superior (Laranja) -->
-      <!-- <div class="top-bar">
-        <div class="container">
-          <ul class="top-menu">
-            <li><a href="#">TRANSPARÊNCIA</a></li>
-            <li><a href="#">OUVIDORIA</a></li>
-            <li><a href="#">DIÁRIO OFICIAL</a></li>
-            <li><a href="#">COVID-19</a></li>
-            <li><a href="#">ACESSO À INFORMAÇÃO</a></li>
-          </ul>
-        </div>
-      </div> -->
-  
-      <!-- Navbar principal (Azul) -->
-      <b-navbar class="custom-navbar">
-        <div class="container d-flex align-items-center justify-content-between">
-          <!-- Itens do menu -->
-          <b-navbar-nav class="nav-links">
-            <b-nav-item href="#">CIDADÃO</b-nav-item>
-            <b-nav-item href="#">SERVIDOR</b-nav-item>
-            <b-nav-item href="#">EMPRESÁRIO</b-nav-item>
-            <b-nav-item href="#">TURISMO</b-nav-item>
-            <b-nav-item href="#">IMPRENSA</b-nav-item>
-            <b-nav-item-dropdown text="SECRETARIAS E ÓRGÃOS">
-              <b-dropdown-item href="#">Educação</b-dropdown-item>
-              <b-dropdown-item href="#">Saúde</b-dropdown-item>
-              <b-dropdown-item href="#">Fazenda</b-dropdown-item>
-            </b-nav-item-dropdown>
-          </b-navbar-nav>
-        </div>
-      </b-navbar>
+  <div class="header-container">
+    <Menubar :model="items" class="custom-menubar">
+      <template #start>
+        <img src="#" alt="Logo" height="40" class="mr-2" />
+      </template>
+      <template #end>
+        <Button 
+          icon="pi pi-bars" 
+          @click="toggleMenu" 
+          class="p-button-text p-button-white menu-button"
+          v-if="isMobile"
+        />
+      </template>
+    </Menubar>
+    <div class="info-bar">
+      <img src="#" alt="Logo Maceió" class="logo-maceio" />
+      <span class="info-text">INFORMA MACEIÓ</span>
     </div>
-  </template>
-  
-  <style>
-  .custom-navbar {
-    background-color: #f58428 !important;
-    height: 70px;
-    padding: 0;
+    <Sidebar v-model:visible="sidebarVisible" position="right" class="mobile-menu">
+      <nav>
+        <ul class="mobile-menu-list">
+          <li v-for="(item, i) in items" :key="i">
+            <a :href="item.to" class="mobile-menu-item">{{ item.label }}</a>
+          </li>
+        </ul>
+      </nav>
+    </Sidebar>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+import { useMediaQuery } from '@vueuse/core'
+
+const sidebarVisible = ref(false)
+const isMobile = useMediaQuery('(max-width: 768px)')
+
+const items = ref([
+  {
+    label: 'TRANSPARÊNCIA',
+    to: '/transparencia'
+  },
+  {
+    label: 'OUVIDORIA',
+    to: '/ouvidoria'
+  },
+  {
+    label: 'DIÁRIO OFICIAL',
+    to: '/diario-oficial'
+  },
+  {
+    label: 'COVID-19',
+    to: '/covid'
+  },
+  {
+    label: 'ACESSO À INFORMAÇÃO',
+    to: '/acesso-informacao'
+  },
+  {
+    label: 'SECRETARIAS E ÓRGÃOS',
+    items: [
+      {
+        label: 'Educação',
+        to: '/educacao'
+      },
+      {
+        label: 'Saúde',
+        to: '/saude'
+      },
+      {
+        label: 'Fazenda',
+        to: '/fazenda'
+      }
+    ]
   }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
+])
+
+const toggleMenu = () => {
+  sidebarVisible.value = !sidebarVisible.value
+}
+</script>
+
+<style scoped>
+.header-container {
+  position: relative;
+}
+
+.custom-menubar {
+  background: #f58428;
+  border: none;
+  padding: 1rem;
+}
+
+:deep(.p-menubar-root-list) {
+  gap: 1rem;
+}
+
+:deep(.p-menuitem-link) {
+  color: white !important;
+  font-weight: bold;
+  border: none !important;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.2s;
+}
+
+:deep(.p-menuitem-link:hover) {
+  background-color: #fff;  
+}
+.menu-button {
+  color: white !important;
+}
+
+.mobile-menu {
+  width: 80vw;
+  max-width: 300px;
+}
+
+.mobile-menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-menu-item {
+  display: block;
+  padding: 1rem;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-menu-item:hover {
+  background-color: #f5f5f5;
+}
+.info-bar {
+  background: #f4f4f4; /* Cor clara da faixa */
+  padding: 2rem 0;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  :deep(.p-menubar-root-list) {
+    display: none;
   }
-  
-  /* Itens do menu */
-  .nav-links .nav-link {
-    color: white !important;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 10px 15px;
-  }
-  
-  .nav-links .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-    }
-  
-  .search-box input {
-    border: none;
-    outline: none;
-    padding: 5px;
-  }
-  @media (max-width: 720px) {
-  .nav-links .nav-link {
-    font-size: 12px; /* Diminui o tamanho do texto */
-    padding: 8px 5px; /* Ajusta o espaçamento */
-    }
-    }
-  </style>
-  
-  <script setup>
-  import { BNavbar, BNavbarNav, BNavItem, BNavItemDropdown, BDropdownItem } from 'bootstrap-vue-next'
-  </script>
-  
+}
+</style>
