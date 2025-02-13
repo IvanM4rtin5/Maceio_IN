@@ -2,7 +2,6 @@
   <div class="header-container">
     <Menubar :model="items" class="custom-menubar">
       <template #start>
-        <img src="#" alt="Logo" height="40" class="mr-2" />
       </template>
       <template #end>
         <Button 
@@ -14,8 +13,8 @@
       </template>
     </Menubar>
     <div class="info-bar">
-      <img src="#" alt="Logo Maceió" class="logo-maceio" />
-      <span class="info-text">INFORMA MACEIÓ</span>
+      <img src="../assets/logo_prefeitura_de_maceio.svg" style="height: 70px; width: 80;" alt="Logo Maceió" class="logo-maceio" />
+      <img src="../assets/logoNova.png" style="height: 70px; width: 150px;" alt="Maceio_informa">
     </div>
     <Sidebar v-model:visible="sidebarVisible" position="right" class="mobile-menu">
       <nav>
@@ -26,15 +25,28 @@
         </ul>
       </nav>
     </Sidebar>
+
+    <!-- Seção de Descrição da SEFAZ de Maceió -->
+    <div class="description-section">
+      <h1>SEFAZ de Maceió</h1>
+      <p>
+        A Secretaria da Fazenda (SEFAZ) de Maceió é responsável pela administração tributária, finanças e contabilidade do município. 
+        Nossa missão é garantir a arrecadação de recursos necessários para o desenvolvimento da cidade, promovendo a transparência e a eficiência na gestão pública.
+      </p>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import { useMediaQuery } from '@vueuse/core'
+import { ref, onMounted, onUnmounted } from 'vue';
+import Menubar from 'primevue/menubar';
+import Button from 'primevue/button';
+import Sidebar from 'primevue/sidebar';
+import InputText from 'primevue/inputtext';
+import Textarea from 'primevue/textarea';
 
-const sidebarVisible = ref(false)
-const isMobile = useMediaQuery('(max-width: 768px)')
+const sidebarVisible = ref(false);
+const isMobile = ref(false);
 
 const items = ref([
   {
@@ -74,11 +86,22 @@ const items = ref([
       }
     ]
   }
-])
+]);
+
+const form = ref({
+  name: '',
+  email: '',
+  message: ''
+});
 
 const toggleMenu = () => {
-  sidebarVisible.value = !sidebarVisible.value
-}
+  sidebarVisible.value = !sidebarVisible.value;
+};
+
+const handleSubmit = () => {
+  alert('Formulário enviado com sucesso!');
+  // Aqui você pode adicionar a lógica para enviar o formulário
+};
 </script>
 
 <style scoped>
@@ -131,9 +154,6 @@ const toggleMenu = () => {
   border-bottom: 1px solid #eee;
 }
 
-.mobile-menu-item:hover {
-  background-color: #f5f5f5;
-}
 .info-bar {
   background: #f4f4f4; /* Cor clara da faixa */
   padding: 2rem 0;
@@ -142,6 +162,18 @@ const toggleMenu = () => {
   align-items: center;
   justify-content: center;
   gap: 1rem;
+}
+
+.description-section {
+  padding: 2rem;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.form-section {
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 @media (max-width: 768px) {

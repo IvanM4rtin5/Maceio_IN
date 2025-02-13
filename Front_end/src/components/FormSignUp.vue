@@ -7,10 +7,19 @@
           </div>
         </div>
         
-        <h2>Login</h2>
+        <h2>Crie sua conta</h2>
   
         <div class="form-group">
           <label>Usuário:</label>
+          <InputText
+            v-model="nome" 
+            placeholder="Informe seu nome"
+            class="w-full"
+            style="width: 335px;"
+          />
+        </div>
+        <div class="form-group">
+          <label>Email:</label>
           <InputText 
             v-model="email" 
             placeholder="Informe seu email"
@@ -24,6 +33,17 @@
           <Password 
             v-model="password" 
             placeholder="Informe a senha"
+            :feedback="false"
+            toggleMask
+            class="w-full"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Senha:</label>
+          <Password 
+            v-model="password" 
+            placeholder="Confirme sua senha"
             :feedback="false"
             toggleMask
             class="w-full"
@@ -47,8 +67,9 @@
     </div>
   </template>
   
-  <script setup>
+  <script >
   import { ref } from 'vue'
+import InputText from 'primevue/inputtext';
   
   const personType = ref('fisica')
   const email = ref('')
@@ -76,7 +97,7 @@
 
   .avatar-container {
   position: absolute;
-  margin: -125px 0;
+  margin: -100px 0;
   left: 50%;
   transform: translateX(-50%);
   }
@@ -106,22 +127,6 @@
     padding-top: 60px; /* Espaço para o avatar */
   }
   
-  /* .user-icon {
-    width: 80px;
-    height: 80px;
-    background-color: #345B7C;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto 1rem;
-  }
-  
-  .user-icon i {
-    font-size: 2.5rem;
-    color: white;
-  }
-   */
   h2 {
     text-align: center;
     color: #345B7C;

@@ -1,23 +1,44 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../pages/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import SignIn from '../pages/SignIn.vue';
+import SignUp from '../pages/SignUp.vue';
+import EmployeeList from '../pages/EmployeeList.vue';
+
+const isAuthenticated = () => {
+  return localStorage.getItem('token') !== null;
+};
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView,
+      redirect: '/signin', // Redireciona para a página de login
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../pages/AboutView.vue'),
+      path: '/signin',
+      name: 'signin',
+      component: SignIn,
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: SignUp,
+    },
+    {
+      path: '/employees',
+      name: 'employees',
+      component: EmployeeList,
+      // meta: { requiresAuth: true },
     },
   ],
-})
+});
 
-export default router
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth && !isAuthenticated()) {
+    next({ name: 'signin' });
+  } else {
+    next();
+  }
+});
+
+export default router;

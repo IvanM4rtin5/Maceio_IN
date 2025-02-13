@@ -1,17 +1,12 @@
 <script setup>
-import Header from './components/Header.vue'
-import Form from './components/Signin.vue'
 </script>
 
 <template>
   <div>
-    <Header/>
-  </div>
-  <div>
-    <Form/>
+    <router-view></router-view> <!-- Aqui as páginas serão renderizadas -->
   </div>
 </template>
 
 <style scoped>
-
+/* Estilos globais ou específicos para o App.vue */
 </style>
