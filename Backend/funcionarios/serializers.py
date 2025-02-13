@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Funcionario
+from .models.funcionario import Funcionario
+from .models.user import CustomUser
 from django.contrib.auth.models import User
 
 # serializer para Funcionario
@@ -13,13 +14,13 @@ class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
 
     class Meta:
-        model = User
-        fields = ('username', 'email', 'password')
+        model = CustomUser
+        fields = ( 'email', 'nome', 'password')
 
     def create(self, validated_data):
-        user = User.objects.create_user(
-            username=validated_data['username'],
+        user = CustomUser.objects.create_user(
             email=validated_data['email'],
+            nome=validated_data['nome'],
             password=validated_data['password']
         )
         return user

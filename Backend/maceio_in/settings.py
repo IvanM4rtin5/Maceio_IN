@@ -78,6 +78,13 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL = "funcionarios.CustomUser"
+
+AUTHENTICATION_BACKENDS = [
+    'funcionarios.authentication.EmailBackend',  # Backend que autentica por email
+    'django.contrib.auth.backends.ModelBackend',  # Backend padrão do Django
+]
+
 WSGI_APPLICATION = 'maceio_in.wsgi.application'
 
 
