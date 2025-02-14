@@ -5,7 +5,7 @@ import Toast from 'primevue/toast';
 <template>
   <div>
     <Toast />
-    <router-view></router-view> <!-- Aqui as páginas serão renderizadas -->
+    <router-view></router-view> 
   </div>
 </template>
 
