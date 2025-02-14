@@ -4,10 +4,10 @@
 API backend desenvolvida em Django para gerenciar dados de funcionários e autenticação de usuários. A API permite registrar, autenticar e gerenciar usuários, bem como acessar dados dos funcionários.
 
 ## Requisitos
-- Python 3.x
-- Django 5.1.5
-- Django Rest Framework
-- SQLite (ou outro banco de dados de sua escolha)
+- Python 3.x ![Python](https://img.shields.io/badge/Python-3.x-blue)
+- Django 5.1.5 ![Django](https://img.shields.io/badge/Django-5.1.5-green)
+- Django Rest Framework ![DRF](https://img.shields.io/badge/DRF-%20-blue)
+- SQLite (ou outro banco de dados de sua escolha) ![SQLite](https://img.shields.io/badge/SQLite-lightgrey)
 
 ## Instalação
 
@@ -75,7 +75,7 @@ Deleta o funcionário.
 
 ## Dependências
 
-- Django==5.1.5
-- djangorestframework
-- djangorestframework-authtoken
-- corsheaders
+- Django==5.1.5 ![Django](https://img.shields.io/badge/Django-5.1.5-green)
+- djangorestframework ![DRF](https://img.shields.io/badge/DRF-%20-blue)
+- djangorestframework-authtoken ![DRF Token](https://img.shields.io/badge/DRF%20Token-yellow)
+- corsheaders ![CORS](https://img.shields.io/badge/CORS-blueviolet)
