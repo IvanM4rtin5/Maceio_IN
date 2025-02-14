@@ -62,11 +62,14 @@ Login de usuário com e-mail e senha. Retorna um token de autenticação.
 ### Funcionários
 
 **GET** `/api/funcionarios/`  
-Retorna uma lista de todos os funcionários.  
+Retorna uma lista de todos os funcionários.
+
 **POST** `/api/funcionarios/`  
 Cria um novo funcionário.
+
 **PUT** `/api/funcionarios/id/`  
 Para Att funcionário.
+
 **DELETE** `/api/funcionarios/id/`  
 Deleta o funcionário.
 
