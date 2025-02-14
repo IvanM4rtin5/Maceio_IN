@@ -110,11 +110,11 @@ Autenticação de Usuários:
 O projeto utiliza o Vue Router para proteger rotas que exigem autenticação. A função isAuthenticated verifica se o usuário possui um token válido no localStorage. Caso contrário, o usuário é redirecionado para a página de login.
 
 javascript
-Copy
+```Copy
 const isAuthenticated = () => {
   return localStorage.getItem('token') !== null;
 };
-
+```
 
 
 
