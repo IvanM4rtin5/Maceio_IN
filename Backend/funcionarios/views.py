@@ -60,7 +60,7 @@ def login_with_email(request):
                 "user": {
                     "id": user.id,
                     "email": user.email,
-                    # "name": user.get_full_name() if user.get_full_name() else user.email
+                    "nome": user.nome
                 }
             })
         else:

@@ -25,6 +25,7 @@ import Column from 'primevue/column';
 import Button from 'primevue/button';
 import Menubar from 'primevue/menubar';
 import Sidebar from 'primevue/sidebar';
+import Dialog from 'primevue/dialog';
 
 const app = createApp(App);
 
@@ -41,5 +42,6 @@ app.component('Column', Column);
 app.component('Button', Button);
 app.component('Menubar', Menubar);
 app.component('Sidebar', Sidebar);
+app.component('Dialog', Dialog);
 
 app.mount('#app');

@@ -77,31 +77,36 @@ const items = ref([
   }
 ]);
 
-const form = ref({
-  name: '',
-  email: '',
-  message: ''
-});
-
 const toggleMenu = () => {
   sidebarVisible.value = !sidebarVisible.value;
 };
 
-const handleSubmit = () => {
-  alert('Formulário enviado com sucesso!');
-  // Aqui você pode adicionar a lógica para enviar o formulário
+const checkScreenSize = () => {
+  isMobile.value = window.innerWidth < 720;
 };
+
+onMounted(() => {
+  checkScreenSize();
+  window.addEventListener('resize', checkScreenSize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', checkScreenSize);
+});
 </script>
 
 <style scoped>
 .header-container {
   position: relative;
+  border-radius: 0%;
 }
 
 .custom-menubar {
   background: #f58428;
   border: none;
   padding: 1rem;
+  border-radius: 0;
+
 }
 
 :deep(.p-menubar-root-list) {
@@ -117,13 +122,17 @@ const handleSubmit = () => {
   transition: background-color 0.2s;
 }
 
-:deep(.p-menuitem-link:hover) {
-  background-color: #fff;  
+:deep(.p-menuitem-content:hover) {
+  background-color: rgba(34, 2, 2, 0.144);  
 }
-.menu-button {
+
+:deep(.p-menuitem-text) {
   color: white !important;
 }
 
+.menu-button {
+  color: white !important;
+}
 .mobile-menu {
   width: 80vw;
   max-width: 300px;
@@ -165,8 +174,11 @@ const handleSubmit = () => {
   margin: 0 auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 720px) {
   :deep(.p-menubar-root-list) {
+    display: none;
+  }
+  :deep(a.p-menubar-button) {
     display: none;
   }
 }

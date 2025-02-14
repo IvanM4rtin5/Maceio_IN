@@ -42,7 +42,7 @@
         <div class="form-group">
           <label>Senha:</label>
           <Password 
-            v-model="password" 
+            v-model="confPassword" 
             placeholder="Confirme sua senha"
             :feedback="false"
             toggleMask
@@ -50,44 +50,93 @@
           />
         </div>
   
-        <div class="forgot-password">
-          <a href="#">Esqueceu a senha?</a>
-        </div>
-  
         <Button 
-          label="ENTRAR" 
+          label="Criar conta" 
           class="login-button"
-          @click="handleLogin"
+          @click="handleSignUp"
+          :loading="loading"
         />
   
         <div class="register-link">
-          <a href="#">Cadastrar-se</a>
+          <span style="color: #345B7C; font-size: 16px; font-weight: bold;">Já possui uma conta?</span>
+          <p style="padding-top: 20px;">
+            <a href="/signin">Login</a>
+          </p>
         </div>
       </div>
     </div>
   </template>
+
+<script setup>
+  import Button from 'primevue/button';
+  import api from '@/axios';
+  import { ref } from 'vue'; 
+  import { useToast } from 'primevue/usetoast';
+  import { useRouter } from 'vue-router';
   
-  <script >
-  import { ref } from 'vue'
-  import InputText from 'primevue/inputtext';
-  import Password from 'primevue/password';
-  import Button from 'primevue/button';   
-  const personType = ref('fisica')
-  const email = ref('')
-  const password = ref('')
+  const toast = useToast();
+  const router = useRouter();
+  const nome = ref('');
+  const email = ref('');
+  const password = ref('');
+  const confPassword = ref('');
+  const loading = ref(false);
   
-  const handleLogin = () => {
-    // Implementar lógica de login aqui
-    console.log('Login attempt:', {
-      personType: personType.value,
-      username: username.value,
+  const handleSignUp = async () => {
+    if (!nome.value || !email.value || !password.value || !confPassword.value) {
+      toast.add({ 
+        severity: 'error', 
+        summary: 'Erro', 
+        detail: 'Por favor, preencha todos os campos', 
+        life: 3000 
+      });
+      return;
+    }
+  
+    if (password.value !== confPassword.value) {
+      toast.add({ 
+        severity: 'error', 
+        summary: 'Erro', 
+        detail: 'As senhas não coincidem.', 
+        life: 3000 
+      });
+      return;
+    }
+  
+    loading.value = true;
+  try {
+    const response = await api.post('/api/register/', {
+      nome: nome.value,
+      email: email.value,
       password: password.value
-    })
+    });
+  
+    if (response.status === 201) {
+      toast.add({ 
+        severity: 'success', 
+        summary: 'Sucesso', 
+        detail: 'Cadastro realizado! Redirecionando...', 
+        life: 3000 
+      });
+      // Redireciona para a página principal
+      router.push('/signin');
+    } else {
+      // Trata o erro
+      console.error('Erro ao cadastrar:', response);
+    }
+  } catch (error) {
+    // Trata o erro
+    console.error('Erro ao cadastrar:', error);
   }
-  </script>
+  
+    loading.value = false;
+  };
+</script>
+    
   
   <style scoped>
   .login-container {
+    font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;

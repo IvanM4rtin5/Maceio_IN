@@ -12,7 +12,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/signin', // Redireciona para a página de login
+      redirect: '/signin', 
     },
     {
       path: '/signin',
