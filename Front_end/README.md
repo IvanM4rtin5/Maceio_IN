@@ -36,19 +36,19 @@ git clone https://github.com/seu-usuario/maceio_in_front.git
 2. Navegue até a pasta do projeto:
 
 ````bash
-Copy
+
 cd maceio_in_front
 ````
 3. Instale as dependências:
 
 ```bash
-Copy
+
 npm install
 ```
 4. Execute o projeto em modo de desenvolvimento:
 
 ```bash
-Copy
+
 npm run dev
 ```
 O projeto estará disponível em http://localhost:5173.
