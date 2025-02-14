@@ -25,15 +25,6 @@
         </ul>
       </nav>
     </Sidebar>
-
-    <!-- Seção de Descrição da SEFAZ de Maceió -->
-    <div class="description-section">
-      <h1>SEFAZ de Maceió</h1>
-      <p>
-        A Secretaria da Fazenda (SEFAZ) de Maceió é responsável pela administração tributária, finanças e contabilidade do município. 
-        Nossa missão é garantir a arrecadação de recursos necessários para o desenvolvimento da cidade, promovendo a transparência e a eficiência na gestão pública.
-      </p>
-    </div>
   </div>
 </template>
 
@@ -42,8 +33,6 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import Menubar from 'primevue/menubar';
 import Button from 'primevue/button';
 import Sidebar from 'primevue/sidebar';
-import InputText from 'primevue/inputtext';
-import Textarea from 'primevue/textarea';
 
 const sidebarVisible = ref(false);
 const isMobile = ref(false);

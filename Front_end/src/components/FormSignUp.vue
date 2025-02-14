@@ -15,7 +15,7 @@
             v-model="nome" 
             placeholder="Informe seu nome"
             class="w-full"
-            style="width: 335px;"
+            style="width: 435px;"
           />
         </div>
         <div class="form-group">
@@ -24,7 +24,7 @@
             v-model="email" 
             placeholder="Informe seu email"
             class="w-full"
-            style="width: 335px;"
+            style="width: 435px;"
           />
         </div>
   
@@ -69,8 +69,9 @@
   
   <script >
   import { ref } from 'vue'
-import InputText from 'primevue/inputtext';
-  
+  import InputText from 'primevue/inputtext';
+  import Password from 'primevue/password';
+  import Button from 'primevue/button';   
   const personType = ref('fisica')
   const email = ref('')
   const password = ref('')
@@ -92,7 +93,7 @@ import InputText from 'primevue/inputtext';
     align-items: center;
     min-height: 100vh;
     background-color: #0088cc;
-    padding: 1rem;
+    padding: 7rem;
   }
 
   .avatar-container {
@@ -121,7 +122,7 @@ import InputText from 'primevue/inputtext';
     padding: 2rem;
     border-radius: 8px;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
     padding-top: 60px; /* Espaço para o avatar */
@@ -195,7 +196,7 @@ import InputText from 'primevue/inputtext';
 }
 
 /* Para garantir que os inputs tenham a mesma largura */
-:deep(.p-inputtext) {
+:deep(.p-inputtext input) {
   width: 100%;
 }
 

@@ -5,10 +5,13 @@
     <div>
       <FormSignup/>
     </div>
+    <div>
+      <Footer/>
+    </div>
   </template>
   
   <script setup>
-  // Lógica do componente SignIn
+  import Footer from '../components/Footer.vue';
   import FormSignup from '../components/FormSignUp.vue';
   import Header from '../components/Header.vue';
   </script>

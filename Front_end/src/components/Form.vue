@@ -1,5 +1,5 @@
 <template>
-    <div class="login-container">
+    <div class="login-container" >
       <div class="login-card">
         <div class="avatar-container">
           <div class="avatar">
@@ -15,7 +15,7 @@
             v-model="email" 
             placeholder="Informe seu email"
             class="w-full"
-            style="width: 335px;"
+            style="width: 435px;"
           />
         </div>
   
@@ -27,6 +27,7 @@
             :feedback="false"
             toggleMask
             class="w-full"
+            
           />
         </div>
   
@@ -41,7 +42,7 @@
         />
   
         <div class="register-link">
-          <a href="#">Cadastrar-se</a>
+          <a href="/signup">Cadastrar-se</a>
         </div>
       </div>
     </div>
@@ -71,7 +72,7 @@
     align-items: center;
     min-height: 100vh;
     background-color: #0088cc;
-    padding: 1rem;
+    padding: 6rem;
   }
 
   .avatar-container {
@@ -100,10 +101,10 @@
     padding: 2rem;
     border-radius: 8px;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
-    padding-top: 60px; /* Espaço para o avatar */
+    padding-top: 60px; 
   }
   
   h2 {
