@@ -5,6 +5,7 @@ import router from './router';
 // PrimeVue
 import PrimeVue from 'primevue/config';
 import "@vueuse/core";
+import ToastService from 'primevue/toastservice';
 
 // PrimeVue Styles 
 import 'primevue/resources/themes/saga-blue/theme.css'  
@@ -29,6 +30,7 @@ const app = createApp(App);
 
 app.use(router);
 app.use(PrimeVue);
+app.use(ToastService);
 
 // Register PrimeVue components
 app.component('RadioButton', RadioButton);

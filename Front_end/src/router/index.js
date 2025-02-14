@@ -28,7 +28,7 @@ const router = createRouter({
       path: '/employees',
       name: 'employees',
       component: EmployeeList,
-      // meta: { requiresAuth: true },
+      meta: { requiresAuth: true },
     },
   ],
 });

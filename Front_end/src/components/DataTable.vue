@@ -10,11 +10,13 @@
               icon="pi pi-pencil"
               class="p-button-rounded p-button-success p-button-text"
               @click="editEmployee(slotProps.data)"
+              style="background-color: green; color: white; font-size: 15px; margin-right: 5px; border-radius: 20px;"
             />
             <Button
               icon="pi pi-trash"
               class="p-button-rounded p-button-danger p-button-text"
               @click="deleteEmployee(slotProps.data.id)"
+              style="background-color: red; color: white; font-size: 15px; border-radius: 20px;"
             />
           </template>
         </Column>

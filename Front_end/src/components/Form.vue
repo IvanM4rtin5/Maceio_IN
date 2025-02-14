@@ -1,69 +1,115 @@
 <template>
-    <div class="login-container" >
-      <div class="login-card">
-        <div class="avatar-container">
-          <div class="avatar">
-            <i class="pi pi-user"></i>
-          </div>
-        </div>
-        
-        <h2>Login</h2>
-  
-        <div class="form-group">
-          <label>Usuário:</label>
-          <InputText 
-            v-model="email" 
-            placeholder="Informe seu email"
-            class="w-full"
-            style="width: 435px;"
-          />
-        </div>
-  
-        <div class="form-group">
-          <label>Senha:</label>
-          <Password 
-            v-model="password" 
-            placeholder="Informe a senha"
-            :feedback="false"
-            toggleMask
-            class="w-full"
-            
-          />
-        </div>
-  
-        <div class="forgot-password">
-          <a href="#">Esqueceu a senha?</a>
-        </div>
-  
-        <Button 
-          label="ENTRAR" 
-          class="login-button"
-          @click="handleLogin"
-        />
-  
-        <div class="register-link">
-          <a href="/signup">Cadastrar-se</a>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="avatar-container">
+        <div class="avatar">
+          <i class="pi pi-user"></i>
         </div>
       </div>
-    </div>
-  </template>
-  
-  <script setup>
-  import { ref } from 'vue'
+      
+      <h2>Login</h2>
 
-  const personType = ref('fisica')
-  const email = ref('')
-  const password = ref('')
-  
-  const handleLogin = () => {
-    // Implementar lógica de login aqui
-    console.log('Login attempt:', {
-      personType: personType.value,
-      username: username.value,
-      password: password.value
-    })
+      <div class="form-group">
+        <label>Usuário:</label>
+        <InputText 
+          v-model="email" 
+          placeholder="Informe seu email"
+          class="w-full"
+          style="width: 435px;"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Senha:</label>
+        <Password 
+          v-model="password" 
+          placeholder="Informe a senha"
+          :feedback="false"
+          toggleMask
+          class="w-full"
+        />
+      </div>
+
+      <div class="forgot-password">
+        <a href="#">Esqueceu a senha?</a>
+      </div>
+
+      <Button 
+        :label="loading ? 'CARREGANDO...' : 'ENTRAR'" 
+        class="login-button"
+        @click="handleLogin"
+        :disabled="loading"
+      />
+
+      <div class="register-link">
+        <a href="/signup">Cadastrar-se</a>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import api from '@/axios';
+import { ref } from 'vue'
+import { useToast } from 'primevue/usetoast';
+import { useRouter } from 'vue-router';
+
+const toast = useToast();
+const router = useRouter();
+const loading = ref(false)
+const personType = ref('fisica')
+const email = ref('')
+const password = ref('')
+
+const handleLogin = async () => {
+  if (!email.value || !password.value) {
+    toast.add({ 
+      severity: 'error', 
+      summary: 'Erro', 
+      detail: 'Por favor, preencha todos os campos', 
+      life: 3000 
+    });
+    return;
   }
-  </script>
+
+  loading.value = true;
+  
+  try {
+    const response = await api.post('/api/login/', {
+      personType: personType.value,
+      email: email.value,
+      password: password.value
+    });
+
+    if (response.data.token) {
+      // Salva o token
+      localStorage.setItem('token', response.data.token);
+      
+      toast.add({ 
+        severity: 'success', 
+        summary: 'Sucesso', 
+        detail: 'Login realizado com sucesso!', 
+        life: 3000 
+      });
+
+      // Redireciona para a página principal
+      router.push('/employees');
+    }
+  } catch (error) {
+    console.error('Erro ao fazer login:', error);
+    const errorMessage = error.response?.data?.error || 'Erro ao realizar login. Tente novamente.';
+    
+    toast.add({ 
+      severity: 'error', 
+      summary: 'Erro', 
+      detail: errorMessage, 
+      life: 3000 
+    });
+  } finally {
+    loading.value = false;
+  }
+}
+</script>
   
   <style scoped>
   .login-container {

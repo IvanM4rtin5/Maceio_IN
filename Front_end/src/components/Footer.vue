@@ -1,7 +1,6 @@
 <template>
     <footer class="footer-section">
       <div class="social-media-section">
-        <h3>Siga-nos nas redes sociais</h3>
         <div class="social-icons">
           <a href="https://facebook.com" target="_blank" class="social-icon">
             <i class="pi pi-facebook"></i>
@@ -31,6 +30,10 @@
   
   <style scoped>
   .footer-section {
+    background-image: url('../assets/maceio_topo.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     text-align: center;
     /* margin-top: 2rem; */
     padding: 1rem;
@@ -53,15 +56,17 @@
   .social-icon:hover {
     color: #0056b3;
   }
- i{
-    margin-right: 0.5rem;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    color: #007bff;
-    font-size: 1.5rem;
-    transition: color 0.3s ease;
-  }
-  
+    
+    i{
+       margin-right: 0.5rem;
+       margin-top: 20px;
+       margin-bottom: 30px;
+       background-color:transparent;
+       color: #007bff  ;
+       border-radius: 100%; 
+       font-size:30px;
+       transition: color 0.3s ease;
+     }
   i:hover {
     cursor: pointer;
     color: #0056b3;

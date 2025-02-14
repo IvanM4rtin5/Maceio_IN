@@ -22,7 +22,7 @@
 
       <!-- Formulário para criar/editar funcionários -->
       <div class="form-section">
-        <h2>{{ isEditing ? 'Editar Funcionário' : 'Novo Funcionário' }}</h2>
+        <h3>{{ isEditing ? 'Editar Funcionário' : 'Novo Funcionário' }}</h3>
         <hr />
         <form @submit.prevent="handleSubmit">
           <div class="p-fluid">
@@ -43,6 +43,7 @@
               <Button v-if="isEditing" type="button" label="Cancelar" class="p-button-secondary" @click="cancelEdit" />
             </div>
           </div>
+          <Button type="button" label="Voltar" class="p-button-secondary" @click="Logout" style="background-color: red;" />
         </form>
       </div>
     </div>
@@ -129,6 +130,12 @@ const cancelEdit = () => {
   resetForm();
 };
 
+// Função para logout
+const Logout = () => {
+  localStorage.removeItem('token');
+  window.location.href = '/signin';
+};
+
 // Função para resetar o formulário
 const resetForm = () => {
   form.value = {
@@ -151,6 +158,14 @@ const resetForm = () => {
     text-align: center;
     margin-bottom: 20px;
     font-size: 2.5rem;
+    font-weight: bold;
+    font-family: sans-serif !important;
+  }
+  h3{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: bold;
     font-family: sans-serif !important;
   }
 }
