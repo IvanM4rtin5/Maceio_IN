@@ -227,12 +227,14 @@
 
 <script setup>
 import { ref, onMounted } from "vue"
+import { useToast } from "primevue/usetoast"
 import Header from "../components/Header.vue"
 import DataTable from "../components/DataTable.vue"
 import Footer from "../components/Footer.vue"
 import InputText from "primevue/inputtext"
 import Button from "primevue/button"
 import api from "../axios"
+import router from "@/router"
 
 // Estado do formulário
 const form = ref({
@@ -242,6 +244,7 @@ const form = ref({
   setor: "",
 })
 
+const toast = useToast()
 // Estado da lista de funcionários
 const employees = ref([])
 
@@ -266,24 +269,55 @@ const fetchEmployees = async () => {
   }
 }
 
-// Função para criar 
 const handleSubmit = async () => {
+  if (!form.value.nome || !form.value.email || !form.value.setor) {
+    toast.add({
+      severity: "error",
+      summary: "Erro",
+      detail: "Por favor, preencha todos os campos e sem espaços em brancos",
+      life: 3000,
+    });
+    return;
+  }
+
   try {
     if (isEditing.value) {
-      // Atualiza um funcionário existente
-      await api.put(`/api/funcionarios/${form.value.id}/`, form.value)
+      await api.put(`/api/funcionarios/${form.value.id}/`, form.value);
+      toast.add({
+        severity: "success",
+        summary: "Sucesso",
+        detail: "Funcionário atualizado com sucesso",
+        life: 3000,
+      });
     } else {
-      // Cria um novo funcionário
-      await api.post("/api/funcionarios/", form.value)
+      const response = await api.post("/api/funcionarios/", form.value);
+      
+      if (response.status === 201 || response.status === 200) {
+        toast.add({
+          severity: "success",
+          summary: "Sucesso",
+          detail: "Funcionário criado com sucesso",
+          life: 3000,
+        });
+
+        // Atualiza a lista do DataTable
+        await fetchEmployees();
+      }
     }
-    // Limpa o formulário e recarrega a lista
-    resetForm()
+
+    // Limpa o formulário e fecha o modal
+    resetForm();
     closeModal();
-    await fetchEmployees()
   } catch (error) {
-    console.error("Erro ao salvar funcionário:", error)
+    console.error("Erro ao salvar funcionário:", error);
+    toast.add({
+      severity: "error",
+      summary: "Erro",
+      detail: "Não foi possível salvar o funcionário",
+      life: 3000,
+    });
   }
-}
+};
 
 // Função para editar um funcionário e abrir o modal
 const openEditModal = (employee) => {
