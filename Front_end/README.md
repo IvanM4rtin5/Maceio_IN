@@ -119,6 +119,6 @@ const isAuthenticated = () => {
 
 
 ### 📧 Contato
-- https://www.linkedin.com/in/ivan-martins-alves/?locale=pt_BR - Ivanmarti.alves@gmail.com
-
-*Link do Projeto* : https:https://github.com/IvanM4rtin5/Dev_FullStack/
+- **LinkedIn** https://www.linkedin.com/in/ivan-martins-alves/?locale=pt_BR
+- **E-mail** Ivanmarti.alves@gmail.com
+- **Link do Projeto** : https:https://github.com/IvanM4rtin5/Maceio_IN/
