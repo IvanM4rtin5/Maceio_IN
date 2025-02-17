@@ -14,8 +14,7 @@
         <InputText 
           v-model="email" 
           placeholder="Informe seu email"
-          class="w-full"
-          style="width: 435px;"
+          class="w-full sm:w-[435px]" 
         />
       </div>
 
@@ -26,7 +25,7 @@
           placeholder="Informe a senha"
           :feedback="false"
           toggleMask
-          class="w-full"
+          class="w-full sm:w-[435px]"
         />
       </div>
 
@@ -53,6 +52,7 @@ import api from '@/axios';
 import { ref } from 'vue'
 import { useToast } from 'primevue/usetoast';
 import { useRouter } from 'vue-router';
+import InputText from 'primevue/inputtext';
 
 const toast = useToast();
 const router = useRouter();
@@ -176,9 +176,9 @@ const handleLogin = async () => {
     color: #333;
   }
   
-  :deep(.p-password) {
-    width: 100%;
-  }
+  :deep(.p-inputtext), :deep(.p-password) {
+  width: 100%;
+}
   
   :deep(.p-password-input) {
     width: 100%;
@@ -216,22 +216,20 @@ const handleLogin = async () => {
   display: block;
 }
 
+
 :deep(.p-password input) {
   width: 100%;
 }
 
-/* Para garantir que os inputs tenham a mesma largura */
-:deep(.p-inputtext) {
-  width: 100%;
-}
-
-@media (max-width: 480px) {
+@media (max-width: 680px) {
   .login-card {
     padding: 1.5rem;
     padding-top: 60px; /* Mantém o espaço para o avatar em telas menores */
     margin-top: 40px; /* Adiciona margem para o avatar não ficar cortado */
   }
-  
+  :deep(.p-inputtext), :deep(.p-password) {
+    width: 100%;
+  }
    .person-type {
       flex-direction: column;
       gap: 0.5rem;

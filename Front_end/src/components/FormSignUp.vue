@@ -14,8 +14,7 @@
           <InputText
             v-model="nome" 
             placeholder="Informe seu nome"
-            class="w-full"
-            style="width: 435px;"
+            class="w-full sm:w-[435px]"
           />
         </div>
         <div class="form-group">
@@ -23,8 +22,7 @@
           <InputText 
             v-model="email" 
             placeholder="Informe seu email"
-            class="w-full"
-            style="width: 435px;"
+            class="w-full sm:w-[435px]"
           />
         </div>
   
@@ -35,7 +33,7 @@
             placeholder="Informe a senha"
             :feedback="false"
             toggleMask
-            class="w-full"
+            class="w-full sm:w-[435px]"
           />
         </div>
 
@@ -46,7 +44,7 @@
             placeholder="Confirme sua senha"
             :feedback="false"
             toggleMask
-            class="w-full"
+            class="w-full  sm:w-[435px]"
           />
         </div>
   
@@ -200,8 +198,8 @@
     color: #333;
   }
   
-  :deep(.p-password) {
-    width: 100%;
+  :deep(.p-inputtext), :deep(.p-password) {
+  width: 100%;
   }
   
   :deep(.p-password-input) {
@@ -249,7 +247,7 @@
   width: 100%;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 680px) {
   .login-card {
     padding: 1.5rem;
     padding-top: 60px; /* Mantém o espaço para o avatar em telas menores */
