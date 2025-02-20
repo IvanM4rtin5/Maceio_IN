@@ -31,7 +31,7 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas:
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/IvanM4rtin5/maceio_in_front.git
+git clone https://github.com/IvanM4rtin5/Maceio_IN.git
 ```
 2. Navegue até a pasta do projeto:
 
