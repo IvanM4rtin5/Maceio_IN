@@ -13,7 +13,7 @@ API backend desenvolvida em Django para gerenciar dados de funcionários e auten
 
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/IvanM4rtin5/Maceio_IN/Backend.git
+    git clone https://github.com/IvanM4rtin5/Maceio_IN.git
     ```
 
 2. Navegue para o diretório do projeto:
