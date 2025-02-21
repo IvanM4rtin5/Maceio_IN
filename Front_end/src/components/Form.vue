@@ -82,7 +82,6 @@ const handleLogin = async () => {
     });
 
     if (response.data.token) {
-      // Salva o token
       localStorage.setItem('token', response.data.token);
       
       toast.add({ 
@@ -92,7 +91,6 @@ const handleLogin = async () => {
         life: 3000 
       });
 
-      // Redireciona para a página principal
       router.push('/employees');
     }
   } catch (error) {
@@ -224,8 +222,8 @@ const handleLogin = async () => {
 @media (max-width: 680px) {
   .login-card {
     padding: 1.5rem;
-    padding-top: 60px; /* Mantém o espaço para o avatar em telas menores */
-    margin-top: 40px; /* Adiciona margem para o avatar não ficar cortado */
+    padding-top: 60px; 
+    margin-top: 40px;
   }
   :deep(.p-inputtext), :deep(.p-password) {
     width: 100%;
