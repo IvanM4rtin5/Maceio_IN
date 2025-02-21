@@ -323,14 +323,8 @@ const handleSubmit = async () => {
 const openEditModal = (employee) => {
   form.value = { ...employee };
   isEditing.value = true; 
-  modalVisible.value = true; // Abre o modal
+  modalVisible.value = true; 
 };
-
-// Função para editar um funcionário
-// const editEmployee = (employee) => {
-//   form.value = { ...employee }
-//   isEditing.value = true
-// }
 
 // Função para deletar um funcionário
 const deleteEmployee = async (id) => {
