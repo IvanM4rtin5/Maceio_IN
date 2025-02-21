@@ -10,5 +10,5 @@ import Toast from 'primevue/toast';
 </template>
 
 <style scoped>
-/* Estilos globais ou específicos para o App.vue */
+
 </style>
