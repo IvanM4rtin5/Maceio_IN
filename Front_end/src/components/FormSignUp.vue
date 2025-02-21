@@ -116,14 +116,11 @@
         detail: 'Cadastro realizado! Redirecionando...', 
         life: 3000 
       });
-      // Redireciona para a página principal
       router.push('/signin');
     } else {
-      // Trata o erro
       console.error('Erro ao cadastrar:', response);
     }
   } catch (error) {
-    // Trata o erro
     console.error('Erro ao cadastrar:', error);
   }
   
@@ -172,7 +169,7 @@
     max-width: 500px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
-    padding-top: 60px; /* Espaço para o avatar */
+    padding-top: 60px; 
   }
   
   h2 {
@@ -242,7 +239,6 @@
   width: 100%;
 }
 
-/* Para garantir que os inputs tenham a mesma largura */
 :deep(.p-inputtext input) {
   width: 100%;
 }
@@ -250,8 +246,8 @@
 @media (max-width: 680px) {
   .login-card {
     padding: 1.5rem;
-    padding-top: 60px; /* Mantém o espaço para o avatar em telas menores */
-    margin-top: 40px; /* Adiciona margem para o avatar não ficar cortado */
+    padding-top: 60px; 
+    margin-top: 40px; 
   }
   
    .person-type {
