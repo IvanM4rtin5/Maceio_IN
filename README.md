@@ -6,6 +6,9 @@
 
 Bem-vindo ao repositório do projeto **FullStack** desenvolvido para o processo seletivo da **SEFAZ Maceió**. Este projeto foi criado com o objetivo de demonstrar minhas habilidades como desenvolvedor FullStack, utilizando **Django** para o backend e **Vue.js** para o frontend.
 
+---
+![Image](https://github.com/IvanM4rtin5/Maceio_IN/blob/main/tela_Maceio_IN.jpeg)
+
 ## 🚀 Por que um único repositório?
 
 Decidi organizar o projeto em um único repositório para facilitar a avaliação e o teste por parte dos avaliadores. Dessa forma, você pode clonar o repositório uma única vez e ter acesso tanto ao backend quanto ao frontend, sem a necessidade de configurar múltiplos repositórios. Acredito que essa abordagem simplifica o processo de revisão e demonstra minha capacidade de organizar e estruturar projetos de forma eficiente.
